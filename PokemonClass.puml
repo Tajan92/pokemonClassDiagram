@@ -122,7 +122,11 @@ package util{
 
 
 class StartMenu{
+    + void menu()
 
+    'evt. som klasser?
+    + void newGame()
+    + void loadGame()
 }
 class User{
     - int id
