@@ -125,10 +125,11 @@ class StartMenu{
 
 }
 class User{
+    - int id
     - String playerName
+    - int age
     - boolean gender
     - int balance
-    - int age
     - int badges
     + void User()
 }
@@ -198,8 +199,8 @@ class BattleSystem{
  "Implemented if time"
 }
 class Shop{
-    + Potion potion
-    + Pokeball pokeball
+    - Potion potion
+    - Pokeball pokeball
 }
 class NPC{
 
@@ -219,8 +220,11 @@ package pauseMenu{
     }
    class PlayerStats{
         - int id
+        - String playerName
+        - int age
+        - boolean gender
+        - int balance
         - int badges
-        - int money
         - int timePlayed
         - int PokemonsSeen
 
@@ -256,7 +260,7 @@ package tools{
 }
 Main *---- GamePanel
 GamePanel *-- KeyHandler
-GamePanel *-- TileManager
+GamePanel *--- TileManager
 GamePanel *-- CollisionChecker
 GamePanel *---- Player
 GamePanel *-- Sound
@@ -274,8 +278,8 @@ World *-- Pokecenter
 World *-- Shop
 World *-- BattleSystem
 World *-- NPC
-User *-- PauseMenu
-User *-- Pokedex
+User *--- PauseMenu
+User *---- Pokedex
 PauseMenu *-- Bag
 PauseMenu *-- PlayerStats
 PauseMenu *-- SaveGame
@@ -295,4 +299,5 @@ Pokemon -- EntryStats
 Pokemon -- TypeEntry
 Shop *-- Pokeball
 Shop *-- Potion
+User <|---- PlayerStats
 @enduml
