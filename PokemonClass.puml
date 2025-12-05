@@ -1,6 +1,10 @@
 @startuml
 !pragma layout smetana
 
+class Main{
+        + JFrame window
+        + GamePanel gamePanel
+    }
 package main {
     class CollisionChecker{
         + CollisionChecker (GamePanel gp)
@@ -35,10 +39,7 @@ package main {
         + void keyPressed(KeyEvent e)
         + void keyReleased(KeyEvent e)
     }
-    class Main{
-        + JFrame window
-        + GamePanel gamePanel
-    }
+
     class Sound{
         - Clip clip
         - URL[] soundURL
@@ -119,7 +120,7 @@ package util{
 }
 
 
-class Main
+
 class StartMenu{
 
 }
@@ -192,12 +193,25 @@ package pokedex{
     }
 
 }
+package interaction{
 class BattleSystem{
  "Implemented if time"
 }
 class Shop{
     + Potion potion
     + Pokeball pokeball
+}
+class NPC{
+
+}
+
+class Wild{
+"Implemented if time"
+}
+class Pokecenter{
+    - int heal
+    + void healingService()
+}
 }
 package pauseMenu{
     class PauseMenu{
@@ -226,59 +240,50 @@ package pauseMenu{
 class World{
 
 }
-class NPC{
 
-}
+package tools{
+    class Pokeball{
+       - int chanceOfCatch
+       + void pokeball()
+       + void ultraPokeball()
 
-class Wild{
-"Implemented if time"
+    }
+    class Potion{
+       - int heal
+       + void potion()
+       + void hyperPotion()
+    }
 }
-class Pokecenter{
-    - int heal
-    + void healingService()
-}
-class Pokeball{
-    - int chanceOfCatch
+Main *---- GamePanel
+GamePanel *-- KeyHandler
+GamePanel *-- TileManager
+GamePanel *-- CollisionChecker
+GamePanel *---- Player
+GamePanel *-- Sound
+TileManager *------ UtilityTool
+TileManager *---- Tile
+TileManager *---- tiles
+TileManager *---- maps
+Player *---- player
 
-   + void pokeball()
-   + void ultraPokeball()
-
-}
-class Potion{
-   - int heal
-   + void potion()
-   + void hyperPotion()
-}
-Main ---- GamePanel
-GamePanel -- KeyHandler
-GamePanel -- TileManager
-GamePanel -- CollisionChecker
-GamePanel --- Player
-GamePanel -- Sound
-TileManager --- UtilityTool
-TileManager --- Tile
-TileManager --- tiles
-TileManager --- maps
-Player ---- player
-
-Main -- StartMenu
-StartMenu -- User
-StartMenu -- World
-World -- Wild
-World -- Pokecenter
-World -- Shop
-World -- BattleSystem
-World -- NPC
-User -- PauseMenu
-User -- Pokedex
-PauseMenu -- Bag
-PauseMenu -- PlayerStats
-PauseMenu -- SaveGame
-PauseMenu -- PokemonParty
-Bag -- Pokeball
-Bag -- Potion
-Pokedex -- PokemonDescription
-Pokedex -- Pokemon
+Main *-- StartMenu
+StartMenu *-- User
+StartMenu *-- World
+World *-- Wild
+World *-- Pokecenter
+World *-- Shop
+World *-- BattleSystem
+World *-- NPC
+User *-- PauseMenu
+User *-- Pokedex
+PauseMenu *-- Bag
+PauseMenu *-- PlayerStats
+PauseMenu *-- SaveGame
+PauseMenu *-- PokemonParty
+Bag *-- Pokeball
+Bag *-- Potion
+Pokedex *-- PokemonDescription
+Pokedex *-- Pokemon
 PokemonDescription -- Language
 PokemonDescription -- CaptureRate
 PokemonDescription -- PokemonSpecies
@@ -288,6 +293,6 @@ Pokemon -- StatInfo
 Pokemon -- Sprites
 Pokemon -- EntryStats
 Pokemon -- TypeEntry
-Shop --- Pokeball
-Shop --- Potion
+Shop *-- Pokeball
+Shop *-- Potion
 @enduml
