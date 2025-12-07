@@ -5,7 +5,7 @@ class Main{
         + JFrame window
         + GamePanel gamePanel
     }
-package main {
+package guiBuilder {
     class CollisionChecker{
         + CollisionChecker (GamePanel gp)
         - boolean isTileColliding(int[][] map, int col, int row)
@@ -123,10 +123,12 @@ package util{
 
 class StartMenu{
     + void menu()
-
-    'evt. som klasser?
-    + void newGame()
-    + void loadGame()
+}
+class LoadGame{
++ Collection<SaveGame>
+}
+class NewGame{
++ User user
 }
 class User{
     - int id
@@ -277,6 +279,9 @@ Player *---- player
 Main *-- StartMenu
 StartMenu *-- User
 StartMenu *-- World
+StartMenu *-- NewGame
+StartMenu *-- LoadGame
+LoadGame *-- SaveGame
 World *-- Wild
 World *-- Pokecenter
 World *-- Shop
